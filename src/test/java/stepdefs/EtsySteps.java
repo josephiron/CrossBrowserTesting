@@ -3,6 +3,7 @@ package stepdefs;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -30,9 +31,9 @@ public class EtsySteps {
 	}
 
 	@When("User searches for {string}")
-	public void user_searches_for(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void user_searches_for(String keyword) {
+	    etsy = new EtsyPage(driver);
+	    etsy.searchBox.sendKeys(keyword + Keys.ENTER);
 	}
 
 	@Then("Search results should be displayed")
