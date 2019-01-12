@@ -18,6 +18,7 @@ public class EtsySteps {
 	
 	private WebDriver driver;
 	private EtsyPage etsy;
+	private String keyword;
 	
 	@Given("User in on Etsy homepage")
 	public void user_in_on_Etsy_homepage() {
@@ -32,14 +33,14 @@ public class EtsySteps {
 
 	@When("User searches for {string}")
 	public void user_searches_for(String keyword) {
+		this.keyword=keyword;
 	    etsy = new EtsyPage(driver);
 	    etsy.searchBox.sendKeys(keyword + Keys.ENTER);
 	}
 
 	@Then("Search results should be displayed")
 	public void search_results_should_be_displayed() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	  Assert.assertTrue(driver.getTitle().toLowerCase().startsWith(keyword));
 	}
 
 }
